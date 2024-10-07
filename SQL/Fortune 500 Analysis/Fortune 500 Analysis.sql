@@ -20,7 +20,7 @@ HAVING average_revenue >= 200
 ORDER BY average_revenue DESC
 ;
 
--- Compare average revenue between with and wihtout healcare benefits
+-- Compare average revenue between with and wihtout healthcare benefits
 
 SELECT ROUND(AVG(revenue),1) AS average_revenue, healthcare_benefits
 FROM fortune_companies
