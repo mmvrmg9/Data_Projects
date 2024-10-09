@@ -1,3 +1,39 @@
+-- Number of customers that ordered more than 2 products in February and the average amount spent
+
+SELECT DISTINCT COUNT(acctnum) AS number_of_customers, ROUND(AVG(Quantity*price),2) AS average_spent
+FROM BIT_DB.customers AS cust
+
+JOIN BIT_DB.FebSales AS FebSales
+ON cust.order_id = FebSales.orderID
+
+WHERE Febsales.Quantity > 2 
+AND LENGTH(orderID) = 6
+AND orderID <> 'Order ID'
+AND orderID IS NOT NULL
+;
+
+-- Query that joins the customers table and FebSales table and selects all accout numbers
+SELECT acctnum
+FROM BIT_DB.customers AS cust
+
+JOIN BIT_DB.FebSales AS FebSales
+ON cust.order_id = FebSales.orderID
+
+WHERE LENGTH(orderID) = 6
+AND orderID <> 'Order ID'
+AND orderID IS NOT NULL
+;
+
+-- Amount of products sold in Los Angeles in February 
+
+SELECT Product, Quantity
+FROM BIT_DB.FebSales
+
+WHERE location LIKE '%Los Angeles%'
+
+Group BY product
+;
+
 -- Amount of orders placed in January
 SELECT COUNT(*)
 FROM BIT_DB.JanSales
@@ -17,17 +53,7 @@ AND orderID <> 'Order ID'
 AND orderID IS NOT NULL
 ;
 
--- Query that joins the customers table and FebSales table and selects all accout numbers
-SELECT acctnum
-FROM BIT_DB.customers AS cust
 
-JOIN BIT_DB.FebSales AS FebSales
-ON cust.order_id = FebSales.orderID
-
-WHERE LENGTH(orderID) = 6
-AND orderID <> 'Order ID'
-AND orderID IS NOT NULL
-;
 
 -- To find out the name of the minimum priced product 
 SELECT DISTINCT Product, MIN(price)
@@ -61,16 +87,5 @@ AND orderID IS NOT NULL
 GROUP BY product
 ;
 
--- Number of customers that ordered more than 2 products in February and the average amount spent
 
-SELECT DISTINCT COUNT(acctnum) AS number_of_customers, ROUND(AVG(Quantity*price),2) AS average_spent
-FROM BIT_DB.customers AS cust
 
-JOIN BIT_DB.FebSales AS FebSales
-ON cust.order_id = FebSales.orderID
-
-WHERE Febsales.Quantity > 2 
-AND LENGTH(orderID) = 6
-AND orderID <> 'Order ID'
-AND orderID IS NOT NULL
-;
